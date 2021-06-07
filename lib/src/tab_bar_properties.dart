@@ -2,28 +2,28 @@ import 'package:contained_tab_bar_view/src/enums.dart';
 import 'package:flutter/material.dart';
 
 class TabBarProperties {
-  final double width;
+  final double? width;
   final double height;
-  final Container background;
+  final Container? background;
   final TabBarPosition position;
   final TabBarAlignment alignment;
   final EdgeInsetsGeometry innerPadding;
   final EdgeInsetsGeometry outerPadding;
 
-  final Decoration indicator;
-  final Color indicatorColor;
+  final Decoration? indicator;
+  final Color? indicatorColor;
   final EdgeInsetsGeometry indicatorPadding;
-  final TabBarIndicatorSize indicatorSize;
+  final TabBarIndicatorSize? indicatorSize;
   final double indicatorWeight;
 
   final bool isScrollable;
 
-  final Color labelColor;
+  final Color? labelColor;
   final EdgeInsetsGeometry labelPadding;
-  final TextStyle labelStyle;
+  final TextStyle? labelStyle;
 
-  final Color unselectedLabelColor;
-  final TextStyle unselectedLabelStyle;
+  final Color? unselectedLabelColor;
+  final TextStyle? unselectedLabelStyle;
 
   const TabBarProperties({
     this.width,

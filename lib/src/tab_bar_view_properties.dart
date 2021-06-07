@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class TabBarViewProperties {
   final DragStartBehavior dragStartBehavior;
-  final ScrollPhysics physics;
+  final ScrollPhysics? physics;
 
   const TabBarViewProperties({
     this.dragStartBehavior: DragStartBehavior.start,

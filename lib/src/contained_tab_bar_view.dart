@@ -11,14 +11,14 @@ class ContainedTabBarView extends StatefulWidget {
   final List<Widget> views;
   final TabBarViewProperties tabBarViewProperties;
   final int initialIndex;
-  final void Function(int) onChange;
+  final void Function(int)? onChange;
   final bool callOnChangeWhileIndexIsChanging;
 
   ContainedTabBarView({
-    Key key,
-    this.tabs,
+    Key? key,
+    required this.tabs,
     this.tabBarProperties: const TabBarProperties(),
-    this.views,
+    required this.views,
     this.tabBarViewProperties: const TabBarViewProperties(),
     this.initialIndex: 0,
     this.onChange,
@@ -33,7 +33,7 @@ class ContainedTabBarView extends StatefulWidget {
 
 class ContainedTabBarViewState extends State<ContainedTabBarView>
     with SingleTickerProviderStateMixin {
-  TabController _controller;
+  TabController? _controller;
 
   @override
   void initState() {
@@ -44,43 +44,43 @@ class ContainedTabBarViewState extends State<ContainedTabBarView>
       initialIndex: widget.initialIndex,
     )..addListener(() {
         if (!widget.callOnChangeWhileIndexIsChanging) {
-          if (!_controller.indexIsChanging) {
-            widget.onChange(_controller.index);
+          if (!_controller!.indexIsChanging) {
+            widget.onChange!(_controller!.index);
           }
         } else {
-          widget.onChange(_controller.index);
+          widget.onChange!(_controller!.index);
         }
       });
   }
 
   // TODO expose it through onChange also
-  bool get indexIsChanging => _controller.indexIsChanging;
+  bool get indexIsChanging => _controller!.indexIsChanging;
 
   void animateTo(
     int value, {
     Duration duration: kTabScrollDuration,
     Curve curve: Curves.ease,
   }) =>
-      _controller.animateTo(value, duration: duration, curve: curve);
+      _controller!.animateTo(value, duration: duration, curve: curve);
 
   void next({
     Duration duration: kTabScrollDuration,
     Curve curve: Curves.ease,
   }) {
-    if (_controller.index == _controller.length - 1) {
+    if (_controller!.index == _controller!.length - 1) {
       return;
     }
-    this.animateTo(_controller.index + 1);
+    this.animateTo(_controller!.index + 1);
   }
 
   void previous({
     Duration duration: kTabScrollDuration,
     Curve curve: Curves.ease,
   }) {
-    if (_controller.index == 0) {
+    if (_controller!.index == 0) {
       return;
     }
-    this.animateTo(_controller.index - 1);
+    this.animateTo(_controller!.index - 1);
   }
 
   @override
@@ -123,7 +123,7 @@ class ContainedTabBarViewState extends State<ContainedTabBarView>
   }
 
   Widget _buildTabBar() {
-    final List<Widget> backgroundStackChildren = [];
+    final List<Widget?> backgroundStackChildren = [];
     if (widget.tabBarProperties.background != null) {
       backgroundStackChildren.add(widget.tabBarProperties.background);
     }
@@ -155,7 +155,7 @@ class ContainedTabBarViewState extends State<ContainedTabBarView>
       height: widget.tabBarProperties.height,
       child: Stack(
         alignment: AlignmentDirectional.center,
-        children: backgroundStackChildren,
+        children: backgroundStackChildren as List<Widget>,
       ),
     );
 
@@ -227,7 +227,7 @@ class ContainedTabBarViewState extends State<ContainedTabBarView>
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller!.dispose();
     super.dispose();
   }
 }

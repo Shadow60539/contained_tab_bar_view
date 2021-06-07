@@ -18,7 +18,7 @@ class ContainerIndicator extends Decoration {
   });
 
   @override
-  _ContainerPainter createBoxPainter([void Function() onChanged]) {
+  _ContainerPainter createBoxPainter([void Function()? onChanged]) {
     return _ContainerPainter(
       onChanged,
       indicator: this,
@@ -30,7 +30,7 @@ class _ContainerPainter extends BoxPainter {
   final ContainerIndicator indicator;
 
   _ContainerPainter(
-    void Function() onChanged, {
+    void Function()? onChanged, {
     this.indicator: const ContainerIndicator(),
   }) : super(onChanged);
 
@@ -62,8 +62,8 @@ class _ContainerPainter extends BoxPainter {
   }) {
     return RRect.fromRectAndCorners(
       Rect.fromCenter(
-        center: Offset(offset.dx + configuration.size.width / 2,
-            configuration.size.height / 2),
+        center: Offset(offset.dx + configuration.size!.width / 2,
+            configuration.size!.height / 2),
         width: this.indicator.width + 2 * addOnWidth,
         height: this.indicator.height + 2 * addOnWidth,
       ),
