@@ -123,9 +123,9 @@ class ContainedTabBarViewState extends State<ContainedTabBarView>
   }
 
   Widget _buildTabBar() {
-    final List<Widget?> backgroundStackChildren = [];
+    final List<Widget> backgroundStackChildren = [];
     if (widget.tabBarProperties.background != null) {
-      backgroundStackChildren.add(widget.tabBarProperties.background);
+      backgroundStackChildren.add(widget.tabBarProperties.background!);
     }
     backgroundStackChildren.add(
       Positioned.fill(
@@ -155,7 +155,7 @@ class ContainedTabBarViewState extends State<ContainedTabBarView>
       height: widget.tabBarProperties.height,
       child: Stack(
         alignment: AlignmentDirectional.center,
-        children: backgroundStackChildren as List<Widget>,
+        children: backgroundStackChildren,
       ),
     );
 
